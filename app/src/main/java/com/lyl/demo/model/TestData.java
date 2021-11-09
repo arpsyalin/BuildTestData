@@ -1,8 +1,10 @@
 package com.lyl.demo.model;
 
+import com.lyl.testobject.TestListType;
 import com.lyl.testobject.TestObject;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * * @Description
@@ -22,6 +24,8 @@ public class TestData implements Serializable {
     private String svrLongitude;
     @TestObject(value = {"28.204844", "28.212222"})
     private String svrLatitude;
+    @TestListType(listType = TestChildData.class)
+    private List<TestChildData> data;
 
     public String getUserName() {
         return userName;
@@ -61,5 +65,13 @@ public class TestData implements Serializable {
 
     public void setSvrLatitude(String svrLatitude) {
         this.svrLatitude = svrLatitude;
+    }
+
+    public List<TestChildData> getData() {
+        return data;
+    }
+
+    public void setData(List<TestChildData> data) {
+        this.data = data;
     }
 }

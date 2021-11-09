@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.lyl.demo.model.TestChildData;
 import com.lyl.demo.model.TestData;
 import com.lyl.testobject.TestObjectBuildUtils;
 
@@ -77,5 +78,11 @@ public class MainActivity extends Activity {
         setText(rootView, R.id.tv_createTime, testData.getCreateTime());
         setText(rootView, R.id.tv_lat, testData.getSvrLatitude());
         setText(rootView, R.id.tv_lon, testData.getSvrLongitude());
+        String str = "";
+        if (testData.getData() != null)
+            for (TestChildData item : testData.getData()) {
+                str += item.getUserName() + "\n";
+            }
+        setText(rootView, R.id.tv_data, str);
     }
 }

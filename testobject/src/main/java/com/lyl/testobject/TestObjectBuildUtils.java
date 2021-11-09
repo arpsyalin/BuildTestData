@@ -1,8 +1,6 @@
 package com.lyl.testobject;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,27 +85,31 @@ public class TestObjectBuildUtils {
             for (Field field : fields) {
                 field.setAccessible(true);
                 TestObject testObject = field.getAnnotation(TestObject.class);
+                TestListType testListType = field.getAnnotation(TestListType.class);
                 String[] arr = null;
+                Class arrClass = null;
                 if (testObject != null) {
                     arr = testObject.value();
                 }
+                if (testListType != null) {
+                    arrClass = testListType.listType();
+                }
                 if (field.getType() == String.class) {
                     field.set(t, getRandomText(arr));
-                } else if (field.getType() == Integer.class || field.getType() == Long.class || field.getType() == Short.class) {
+                } else if (field.getType() == Integer.class || field.getType() == Long.class || field.getType() == Short.class || field.getType() == int.class || field.getType() == long.class || field.getType() == short.class) {
                     field.set(t, getRandomInteger(arr));
-                } else if (field.getType() == Boolean.class) {
+                } else if (field.getType() == Boolean.class || field.getType() == boolean.class) {
                     field.set(t, getRandomBoolean());
-                } else if (field.getType() == Float.class || field.getType() == Double.class) {
+                } else if (field.getType() == Float.class
+                        || field.getType() == Double.class || field.getType() == float.class
+                        || field.getType() == double.class
+                        || "double".equals(field.getType().getName())) {
                     field.set(t, getRandomFloat(arr));
-                } else if (field.getType() == Byte.class) {
+                } else if (field.getType() == Byte.class || field.getType() == byte.class) {
                     field.set(t, getRandomByte(arr));
                 } else if (field.getType() == List.class) {
-                    // TODO: 2021/9/16 暂时不使用
-                    Type type = field.getType().getGenericSuperclass();
-                    ParameterizedType pt = (ParameterizedType) type;
-                    if (pt != null && pt.getActualTypeArguments() != null && pt.getActualTypeArguments().length > 0) {
-                        Type type1 = pt.getActualTypeArguments()[0];
-                        field.set(t, getList(type1.getClass(), 10));
+                    if (arrClass != null) {
+                        field.set(t, getList(arrClass, 5));
                     }
                 } else if (field.getType() == Object.class) {
                     // TODO: 2021/9/16 暂时不使用
