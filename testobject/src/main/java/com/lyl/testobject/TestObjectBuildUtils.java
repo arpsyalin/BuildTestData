@@ -111,7 +111,7 @@ public class TestObjectBuildUtils {
                     if (arrClass != null) {
                         field.set(t, getList(arrClass, 5));
                     }
-                } else if (field.getType() == Object.class) {
+                } else {
                     // TODO: 2021/9/16 暂时不使用
                     field.set(t, get(field.getType()));
                 }

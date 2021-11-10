@@ -80,9 +80,11 @@ public class MainActivity extends Activity {
         setText(rootView, R.id.tv_lon, testData.getSvrLongitude());
         String str = "";
         if (testData.getData() != null)
-            for (TestChildData item : testData.getData()) {
-                str += item.getUserName() + "\n";
+            for (int i = 0; i < testData.getData().size(); i++) {
+                str += "第" + i + "条：" + testData.getData().get(i).getUserName() + "\n";
             }
-        setText(rootView, R.id.tv_data, str);
+        setText(rootView, R.id.tv_data, "List<TestChildData>:\n" + str);
+        setText(rootView, R.id.tv_data2, "TestData2:\n" + testData.getTestData2().getUserName() + "\n");
+
     }
 }

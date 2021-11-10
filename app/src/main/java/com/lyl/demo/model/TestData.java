@@ -26,6 +26,7 @@ public class TestData implements Serializable {
     private String svrLatitude;
     @TestListType(listType = TestChildData.class)
     private List<TestChildData> data;
+    private TestData2 testData2;
 
     public String getUserName() {
         return userName;
@@ -73,5 +74,13 @@ public class TestData implements Serializable {
 
     public void setData(List<TestChildData> data) {
         this.data = data;
+    }
+
+    public TestData2 getTestData2() {
+        return testData2;
+    }
+
+    public void setTestData2(TestData2 testData2) {
+        this.testData2 = testData2;
     }
 }
