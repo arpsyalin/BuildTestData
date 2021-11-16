@@ -1,10 +1,5 @@
 package com.lyl.demo;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.lyl.demo.model.TestChildData;
 import com.lyl.demo.model.TestData;
 import com.lyl.testobject.TestObjectBuildUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends Activity {
     RecyclerView recyclerView;
@@ -79,10 +77,11 @@ public class MainActivity extends Activity {
         setText(rootView, R.id.tv_lat, testData.getSvrLatitude());
         setText(rootView, R.id.tv_lon, testData.getSvrLongitude());
         String str = "";
-        if (testData.getData() != null)
+        if (testData.getData() != null) {
             for (int i = 0; i < testData.getData().size(); i++) {
                 str += "第" + i + "条：" + testData.getData().get(i).getUserName() + "\n";
             }
+        }
         setText(rootView, R.id.tv_data, "List<TestChildData>:\n" + str);
         setText(rootView, R.id.tv_data2, "TestData2:\n" + testData.getTestData2().getUserName() + "\n");
 
