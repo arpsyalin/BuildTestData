@@ -1,7 +1,6 @@
-plugins {
-    id 'java-library'
-}
-
+apply plugin: 'java-library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.arpsyalin'
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
